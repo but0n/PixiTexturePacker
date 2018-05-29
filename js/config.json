@@ -54,10 +54,10 @@
 			{ "render": true, "id": "algorithm", "text": "Algorithm", "type": "select", "value": "binpacker", "values": [
 				[ "binpacker", "Bin Packer" ]
 			] },
-			{ "render": true, "id": "borderpadding", "text": "Border Padding", "type": "int", "min": 0, "value": 2 },
-			{ "render": true, "id": "shapepadding", "text": "Shape Padding", "type": "int", "min": 0, "value": 2 },
+			{ "render": true, "id": "borderpadding", "text": "Border Padding", "type": "int", "min": 0, "value": 0 },
+			{ "render": true, "id": "shapepadding", "text": "Shape Padding", "type": "int", "min": 0, "value": 0 },
 			{ "render": true, "id": "innerpadding", "text": "Inner Padding", "type": "int", "min": 0, "value": 0 },
-			{ "render": true, "id": "trimmode", "text": "Trim Mode", "type": "select", "value": "trim", "values": [
+			{ "render": true, "id": "trimmode", "text": "Trim Mode", "type": "select", "value": "none", "values": [
 				[ "trim", "Trim" ],
 				[ "none", "None" ]
 			] },
