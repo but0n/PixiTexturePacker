@@ -260,9 +260,14 @@
 					format.s.push(block);
 				}
 			});
-			console.log(format);
 			format = JSON.stringify(format);
-
+			console.log(format);
+			let cont = encodeURI('data:text/plain,' + format);
+			console.log(cont);
+			$('.showimage').parent().append('<a class="dl_img" href="' + imgdata + '" download="' + this.input.texturefile.value + '">Image</a>')
+			$('.showimage').parent().append('<a class="dl_json" href="' + cont + '" download="' + this.input.datafile.value + '.atlas.json">Json</a>')
+			$('.dl_img').click();
+			$('.dl_json').click();
 			this.output.textarea.val(format).select();
 			this.output.image.attr("src", imgdata);
 

@@ -30,7 +30,7 @@
 			{ "render": false, "id": "dataformat", "text": "Data Format", "type": "select", "value": "json", "values": [
 				[ "json", "JSON (Hash)" ]
 			] },
-			{ "render": false, "id": "datafile", "text": "Data File", "type": "text", "value": "spritesheet.json" },
+			{ "render": false, "id": "datafile", "text": "Data File", "type": "text", "value": "spritesheet" },
 			{ "render": false, "id": "txtformat", "text": "Texture Format", "type": "select", "value": "png", "values": [
 				[ "png", "PNG (.png)" ], 
 				[ "jpg", "JPEG (.jpg)" ], 
