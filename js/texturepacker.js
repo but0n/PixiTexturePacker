@@ -206,44 +206,64 @@
 			/* snapshot stage... */
 			var imgdata = this.snapshotStage();
 
-			var separator = "", output = "{ \"frames\": {\n\n";
-			_.each(this.frames, function(frame, name) {
-				if(frame.sprite.visible) {
-					output += separator;
-					output += "\""+name+"\": {\n";
-					output += "\t\"frame\": {";
-					output += "\"x\":" + (frame.sprite.position.x + frame.trimmedSize.x) + ","; 
-					output += "\"y\":" + (frame.sprite.position.y + frame.trimmedSize.y) + ","; 
-					output += "\"w\":" + frame.trimmedSize.width + ","; 
-					output += "\"h\":" + frame.trimmedSize.height; 
-					output += "},\n";
-					output += "\t\"rotated\": false,\n";
-					output += "\t\"trimmed\": " + (frame.trimmed ? "true" : "false") + ",\n";
-					output += "\t\"spriteSourceSize\": {";
-					output += "\"x\":" + frame.trimmedSize.x + ","; 
-					output += "\"y\":" + frame.trimmedSize.y + ","; 
-					output += "\"w\":" + frame.trimmedSize.width + ","; 
-					output += "\"h\":" + frame.trimmedSize.height;
-					output += "},\n";
-					output += "\t\"sourceSize\": {";
-					output += "\"w\":" + frame.width + ","; 
-					output += "\"h\":" + frame.height; 
-					output += "}\n";
-					output += "}";
-					separator = ",\n";
+			// var separator = "", output = "{ \"frames\": {\n\n";
+			// _.each(this.frames, function(frame, name) {
+			// 	if(frame.sprite.visible) {
+			// 		output += separator;
+			// 		output += "\""+name+"\": {\n";
+			// 		output += "\t\"frame\": {";
+			// 		output += "\"x\":" + (frame.sprite.position.x + frame.trimmedSize.x) + ","; 
+			// 		output += "\"y\":" + (frame.sprite.position.y + frame.trimmedSize.y) + ","; 
+			// 		output += "\"w\":" + frame.trimmedSize.width + ","; 
+			// 		output += "\"h\":" + frame.trimmedSize.height; 
+			// 		output += "},\n";
+			// 		output += "\t\"rotated\": false,\n";
+			// 		output += "\t\"trimmed\": " + (frame.trimmed ? "true" : "false") + ",\n";
+			// 		output += "\t\"spriteSourceSize\": {";
+			// 		output += "\"x\":" + frame.trimmedSize.x + ","; 
+			// 		output += "\"y\":" + frame.trimmedSize.y + ","; 
+			// 		output += "\"w\":" + frame.trimmedSize.width + ","; 
+			// 		output += "\"h\":" + frame.trimmedSize.height;
+			// 		output += "},\n";
+			// 		output += "\t\"sourceSize\": {";
+			// 		output += "\"w\":" + frame.width + ","; 
+			// 		output += "\"h\":" + frame.height; 
+			// 		output += "}\n";
+			// 		output += "}";
+			// 		separator = ",\n";
+			// 	}
+			// });
+			// output += "\n},\n";
+			// output += "\"meta\": {\n";
+			// output += "\t\"app\": \"http://www.mokgames.com/texturepacker/\",\n";
+			// output += "\t\"version\": \"1.0\",\n";
+			// output += "\t\"image\": \"" + this.input.texturefile.value + "\",\n";
+			// output += "\t\"format\": \"RGBA8888\",\n";
+			// output += "\t\"size\": {\"w\":" + this.width + ",\"h\":" + this.height + "},\n";
+			// output += "\t\"scale\": " + this.input.scale.value + "\n";
+			// output += "}}";
+
+			format = {};
+			format.t = this.input.texturefile.value;
+			format.w = this.width;
+			format.h = this.height;
+			format.s = [];
+			_.each(this.frames, function (frame, name) {
+				if (frame.sprite.visible) {
+					let block = [
+						name,
+						frame.sprite.position.x,
+						frame.sprite.position.y,
+						frame.trimmedSize.width,
+						frame.trimmedSize.height
+					];
+					format.s.push(block);
 				}
 			});
-			output += "\n},\n";
-			output += "\"meta\": {\n";
-			output += "\t\"app\": \"http://www.mokgames.com/texturepacker/\",\n";
-			output += "\t\"version\": \"1.0\",\n";
-			output += "\t\"image\": \"" + this.input.texturefile.value + "\",\n";
-			output += "\t\"format\": \"RGBA8888\",\n";
-			output += "\t\"size\": {\"w\":" + this.width + ",\"h\":" + this.height + "},\n";
-			output += "\t\"scale\": " + this.input.scale.value + "\n";
-			output += "}}";
+			console.log(format);
+			format = JSON.stringify(format);
 
-			this.output.textarea.val(output).select();
+			this.output.textarea.val(format).select();
 			this.output.image.attr("src", imgdata);
 
 			this.publishing = false;
